@@ -16,11 +16,11 @@ export default class Rook extends Piece {
         
         for(let i=0; i<GameSettings.BOARD_SIZE;i++){
             //Get Horizontal Moves
-            if(i!=location.col){
+            if(i!==location.col){
                 arrExpectedMoves.push(Square.at(location.row, i));
             }
             //Get Vertical Moves
-            if(i!=location.row){
+            if(i!==location.row){
                 arrExpectedMoves.push(Square.at(i, location.col));
             }
         }
