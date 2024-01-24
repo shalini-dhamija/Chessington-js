@@ -16,33 +16,53 @@ export default class Bishop extends Piece {
 
         //Get Right upward diagonal
         startRow = location.row + 1;
-        for(let j=location.col+1;j<GameSettings.BOARD_SIZE;j++){
+        for(let j=location.col+1; j<GameSettings.BOARD_SIZE&&startRow<GameSettings.BOARD_SIZE; j++,startRow++){
             const move = Square.at(startRow,j)
-            arrExpectedMoves.push(move);
-            startRow++;
+            const piece = board.getPiece(move);
+            if(piece===undefined)
+                arrExpectedMoves.push(move);            
+            else{
+                arrExpectedMoves.push(move); 
+                break;
+            }
         }
         
         //Get Right downward diagonal
         startCol = location.col + 1;
-        for(let i=location.row-1;i>=0;i--){
+        for(let i=location.row-1; i>=0&&startCol<GameSettings.BOARD_SIZE; i--,startCol++){
             const move = Square.at(i,startCol);
-            arrExpectedMoves.push(move);
-            startCol++;
+            const piece = board.getPiece(move);
+            if(piece===undefined)
+                arrExpectedMoves.push(move);
+            else{
+                arrExpectedMoves.push(rookMove); 
+                break;
+            }            
         }
 
         //Get Left upward diagonal
         startRow = location.row + 1;
-        for(let j=location.col-1;j>=0;j--){
+        for(let j=location.col-1; j>=0&&startRow<GameSettings.BOARD_SIZE; j--,startRow++){
             const move = Square.at(startRow,j);
-            arrExpectedMoves.push(move);            
-            startRow++;
+            const piece = board.getPiece(move);
+            if(piece===undefined)
+                arrExpectedMoves.push(move);            
+            else{
+                arrExpectedMoves.push(move); 
+                break;
+            }            
         }
         //Get Left downward diagonal
         startCol = location.col - 1;
-        for(let i=location.row-1;i>=0;i--){
+        for(let i=location.row-1; i>=0&&startCol>=0; i--,startCol--){
             const move = Square.at(i,startCol)
-            arrExpectedMoves.push(move);
-            startCol--;
+            const piece = board.getPiece(move);
+            if(piece===undefined)
+                arrExpectedMoves.push(move);
+             else{            
+                arrExpectedMoves.push(rookMove); 
+                break;
+            }            
         }
         
         return arrExpectedMoves;
