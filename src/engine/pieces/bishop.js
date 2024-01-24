@@ -22,7 +22,8 @@ export default class Bishop extends Piece {
             if(piece===undefined)
                 arrExpectedMoves.push(move);            
             else{
-                arrExpectedMoves.push(move); 
+                if(piece.player !== this.player && !(piece instanceof King))
+                    arrExpectedMoves.push(move); 
                 break;
             }
         }
@@ -35,7 +36,8 @@ export default class Bishop extends Piece {
             if(piece===undefined)
                 arrExpectedMoves.push(move);
             else{
-                arrExpectedMoves.push(rookMove); 
+                if(piece.player !== this.player && !(piece instanceof King))
+                    arrExpectedMoves.push(rookMove); 
                 break;
             }            
         }
@@ -48,7 +50,8 @@ export default class Bishop extends Piece {
             if(piece===undefined)
                 arrExpectedMoves.push(move);            
             else{
-                arrExpectedMoves.push(move); 
+                if(piece.player !== this.player && !(piece instanceof King))
+                    arrExpectedMoves.push(move); 
                 break;
             }            
         }
@@ -59,8 +62,9 @@ export default class Bishop extends Piece {
             const piece = board.getPiece(move);
             if(piece===undefined)
                 arrExpectedMoves.push(move);
-             else{            
-                arrExpectedMoves.push(rookMove); 
+             else{      
+                if(piece.player !== this.player && !(piece instanceof King))      
+                    arrExpectedMoves.push(rookMove); 
                 break;
             }            
         }
