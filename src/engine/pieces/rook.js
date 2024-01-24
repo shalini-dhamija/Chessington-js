@@ -1,6 +1,7 @@
 import Square from '../square';
 import Piece from './piece';
 import GameSettings from '../gameSettings';
+import King from "./king";
 
 export default class Rook extends Piece {
     constructor(player) {
@@ -15,31 +16,51 @@ export default class Rook extends Piece {
 
         //Get Horizontal Forward Moves
         for(let i=location.col+1;i<GameSettings.BOARD_SIZE;i++){
-            if(board.getPiece(Square.at(location.row,i))===undefined)
-                arrExpectedMoves.push(Square.at(location.row, i));
-            else
-                break;
+            const rookMove = Square.at(location.row,i)
+            const piece = board.getPiece(rookMove);
+            if(piece===undefined)
+                arrExpectedMoves.push(rookMove);            
+            else{
+                if(piece.player !== this.player && !(piece instanceof King))
+                    arrExpectedMoves.push(rookMove); 
+                 break;
+            }
         }
         //Get Horizontal Backward Moves
         for(let i=location.col-1;i>=0;i--){
-            if(board.getPiece(Square.at(location.row,i))===undefined)
-                arrExpectedMoves.push(Square.at(location.row, i));
-            else
+            const rookMove = Square.at(location.row,i)
+            const piece = board.getPiece(rookMove);
+            if(piece===undefined)
+                arrExpectedMoves.push(rookMove);
+            else{
+                if(piece.player !== this.player && !(piece instanceof King))
+                    arrExpectedMoves.push(rookMove); 
                 break;
+            }
         }
         //Get Vertical Forward Moves
         for(let i=location.row+1;i<GameSettings.BOARD_SIZE;i++){
-            if(board.getPiece(Square.at(i,location.col))===undefined)
-                arrExpectedMoves.push(Square.at(i, location.col));
-            else
+            const rookMove = Square.at(i,location.col);
+            const piece = board.getPiece(rookMove)
+            if(piece===undefined)
+                arrExpectedMoves.push(rookMove);
+            else{
+                if(piece.player !== this.player && !(piece instanceof King))
+                    arrExpectedMoves.push(rookMove); 
                 break;
+            }
         }
         //Get Vertical Backward Moves
         for(let i=location.row-1;i>=0;i--){
-            if(board.getPiece(Square.at(i,location.col))===undefined)
-            arrExpectedMoves.push(Square.at(i, location.col));
-            else
+            const rookMove = Square.at(i,location.col);
+            const piece = board.getPiece(rookMove)
+            if(piece===undefined)
+            arrExpectedMoves.push(rookMove);
+            else{
+                if(piece.player !== this.player && !(piece instanceof King))
+                    arrExpectedMoves.push(rookMove); 
                 break;
+            }
         }
         return arrExpectedMoves;
     }    
